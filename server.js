@@ -25,11 +25,7 @@ const pusher = new Pusher({
 
 // Middlewares
 app.use(express.json()) 
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', '*');
-//     next();
-// });
+
 app.use(cors())
 
 /// Database Config
@@ -55,7 +51,8 @@ db.once('open', ()=>{
                 pusher.trigger('messages', 'inserted',{
                     name : messageDetails.name,
                     message: messageDetails.message,
-                    timestamp: messageDetails.timestamp
+                    timestamp: messageDetails.timestamp,
+                    received: messageDetails.received
                 })
 
            
